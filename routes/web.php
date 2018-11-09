@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/openChat', 'ChatController@openChat')->name('openChat');
+Route::post('/addMessage', 'ChatController@addMessage')->name('addMessage');
 Route::get('/privateChat', 'ChatController@privateChat')->name('privateChat');

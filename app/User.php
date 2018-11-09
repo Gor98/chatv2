@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Symfony\Component\Translation\Formatter\MessageFormatter;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,11 @@ class User extends Authenticatable
     ];
 
     public function romms(){
-        $this->belongsToMany(Romm::class);
+        $this->belongsToMany(Room::class);
     }
+
+    public function messages(){
+        $this->hasMany(Message::class);
+    }
+
 }

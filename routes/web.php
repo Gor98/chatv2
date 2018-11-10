@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/openChat', 'ChatController@openChat')->name('openChat');
 Route::post('/addOpenMessage', 'ChatController@addOpenChatMessage')->name('addOpenMessage');
-Route::get('/privateChat', 'ChatController@privateChat')->name('privateChat');
+
+Route::get('/privateChatRooms', 'ChatController@privateChatRooms')->middleware('auth')->name('privateChatRooms');
+Route::get('/privateChat', 'ChatController@privateChat')->middleware('auth')->name('privateChat');
+Route::post('/addPrivateMessage', 'ChatController@addOpenChatMessage')->middleware('auth')->name('addOpenMessage');

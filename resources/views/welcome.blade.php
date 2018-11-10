@@ -15,7 +15,7 @@
                         <a role="button" href="{{route('openChat')}}" class="btn btn-outline-success btn-lg btn-block" style=" text-align:center; padding:50px;  height: 150px; width: 350px;">Open Chat</a>
                     </div>
                     <div class="col-4">
-                        <a role="button" href="{{route('privateChat')}}" class="btn btn-outline-danger btn-lg btn-block" style=" text-align:center; padding:50px;  height: 150px; width: 350px;">Private Chat</a>
+                        <a role="button" href="{{route('privateChatRooms')}}" class="btn btn-outline-danger btn-lg btn-block" style=" text-align:center; padding:50px;  height: 150px; width: 350px;">Private Chat</a>
                     </div>
                 </div>
             </div>

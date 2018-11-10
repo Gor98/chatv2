@@ -7,6 +7,9 @@
 
 require('./bootstrap');
 
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+
 
 window.Vue = require('vue');
 
@@ -16,9 +19,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.use(VeeValidate);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('open-chat', require('./components/OpenChat.vue'));
+Vue.component('private-chat-rooms', require('./components/PrivateChatRooms.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
 });

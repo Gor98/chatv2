@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class openChat implements ShouldBroadcast
+class OpenChat implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +19,18 @@ class openChat implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct()
+    public $text;
+    public function __construct($message)
     {
-        //
+
+        $this->text = $message;
+        $this->dontBroadcastToCurrentUser();
+    }
+
+
+    public function broadcastAs()
+    {
+        return 'newMessage';
     }
 
     /**

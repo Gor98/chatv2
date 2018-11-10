@@ -14081,7 +14081,7 @@ window.Pusher = __webpack_require__(38);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
-  key: "226fdac2001b947e76fa",
+  key: "83b063c1c47352f82c95",
   cluster: "ap2",
   encrypted: true
 });
@@ -57271,7 +57271,7 @@ exports = module.exports = __webpack_require__(48)(false);
 
 
 // module
-exports.push([module.i, "\n.card-body li:nth-child(even){\n    background-color: #ccc;\n    text-align: end;\n}\n.card-body{\n    height: 400px;\n    overflow-y: scroll;\n}\n.card-footer{\n    padding: 15px 0px 0px  0px;\n}\n\n", ""]);
+exports.push([module.i, "\n.card-body li:nth-child(even){\n    background-color: #ccc;\n    text-align: end;\n}\n.card-body{\n    height: 300px;\n    overflow-y: scroll;\n}\n.card-footer{\n    padding: 15px 10px 0  10px;\n}\n\n", ""]);
 
 // exports
 
@@ -57650,8 +57650,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57663,13 +57661,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         sendMessage: function sendMessage() {
+            // push messages to massages list
+            this.messages.push({ text: this.text });
 
-            this.messages.push({ text: this.text, name: 'hhhhh' });
+            // send message
+            axios.post('/addOpenMessage', { text: this.text }).then(function (response) {});
             this.text = '';
         }
     },
     mounted: function mounted() {
-        console.log('Component mounted.');
+        var _this = this;
+
+        Echo.channel('openChat').listen('.newMessage', function (message) {
+            _this.messages.push(message);
+        });
     }
 });
 
@@ -57693,61 +57698,60 @@ var render = function() {
               { staticClass: "list-group" },
               _vm._l(_vm.messages, function(index) {
                 return _c("li", { staticClass: "list-group-item" }, [
-                  _vm._v(_vm._s(index.text) + " "),
-                  _c("small", [_c("b", [_vm._v(_vm._s(index.name))])])
+                  _vm._v(_vm._s(index.text))
                 ])
               })
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer text-muted" }, [
-              _c("div", { staticClass: "input-group mb-3" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.text,
-                      expression: "text"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Recipient's username",
-                    "aria-label": "Recipient's username",
-                    "aria-describedby": "basic-addon2"
-                  },
-                  domProps: { value: _vm.text },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !("button" in $event) &&
-                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                      ) {
-                        return null
-                      }
-                      return _vm.sendMessage($event)
-                    },
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.text = $event.target.value
-                    }
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer text-muted" }, [
+            _c("div", { staticClass: "input-group mb-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.text,
+                    expression: "text"
                   }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-append" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-secondary",
-                      attrs: { type: "button" },
-                      on: { click: _vm.sendMessage }
-                    },
-                    [_vm._v("Send")]
-                  )
-                ])
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "Recipient's username",
+                  "aria-label": "Recipient's username",
+                  "aria-describedby": "basic-addon2"
+                },
+                domProps: { value: _vm.text },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.sendMessage($event)
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.text = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-secondary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.sendMessage }
+                  },
+                  [_vm._v("Send")]
+                )
               ])
             ])
           ])

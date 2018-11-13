@@ -12,8 +12,8 @@ class Message extends Model
     ];
 
 
-    public function user(){
-        $this->hasOne(User::class);
+    public function room(){
+        return $this->hasOne(User::class);
     }
 
 }

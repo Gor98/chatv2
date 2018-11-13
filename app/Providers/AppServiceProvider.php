@@ -10,6 +10,10 @@ use App\Http\Repositories\RoomRepository;
 use App\Contracts\MessageContract;
 use App\Http\Repositories\MessageRepository;
 
+use App\Contracts\UserContract;
+use App\Http\Repositories\UserRepository;
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -37,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             MessageContract::class,
             MessageRepository::class
+        );
+        $this->app->bind(
+            UserContract::class,
+            UserRepository::class
         );
 
     }

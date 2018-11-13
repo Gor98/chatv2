@@ -66,8 +66,6 @@
                 text:'',
                 dismissModal:'',
                 room:{
-                    name:'',
-                    description:''
                 },
                 submitted: false,
                 messages: [
@@ -89,10 +87,12 @@
 
             createRoom(){
                 this.submitted = true;
-
                 this.$validator.validate().then(valid => {
                     if (valid) {
-                        this.dismissModal = 'modal'
+                        axios.post('/addChatRoom',this.room).then(response =>{
+                            $('#createRoom').modal('hide');
+                            this.room = {};
+                        });
                     }
                 });
 

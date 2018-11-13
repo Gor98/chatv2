@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRommUserTable extends Migration
+class CreateRoomUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRommUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('romm_user', function (Blueprint $table) {
+        Schema::create('room_user', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();

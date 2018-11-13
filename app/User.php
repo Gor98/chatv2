@@ -28,12 +28,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function romms(){
-        $this->belongsToMany(Room::class);
+    public function rooms(){
+        return $this->belongsToMany(Room::class)->withTimestamps();
     }
 
-    public function messages(){
-        $this->hasMany(Message::class);
-    }
 
 }

@@ -25,3 +25,6 @@ Route::post('/addOpenMessage', 'ChatController@addOpenChatMessage')->name('addOp
 Route::get('/privateChatRooms', 'ChatController@privateChatRooms')->middleware('auth')->name('privateChatRooms');
 Route::get('/privateChat', 'ChatController@privateChat')->middleware('auth')->name('privateChat');
 Route::post('/addPrivateMessage', 'ChatController@addOpenChatMessage')->middleware('auth')->name('addOpenMessage');
+
+
+Route::post('/addChatRoom', 'ChatController@addChatRoom')->middleware('auth')->name('addChatRoom');

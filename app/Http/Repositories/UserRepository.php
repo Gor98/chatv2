@@ -7,10 +7,10 @@
  */
 
 namespace App\Http\Repositories;
-use App\Contracts\RoomContract;
-use App\Room;
+use App\Contracts\UserContract;
+use App\User;
 use DB;
-class RoomRepository implements RoomContract
+class UserRepository implements UserContract
 {
 
     /**
@@ -18,7 +18,7 @@ class RoomRepository implements RoomContract
      *
      * @var $model
      */
-    private $room;
+    private $Room;
 
     /**
      * Create a new instance of AdminRepository class.
@@ -27,12 +27,12 @@ class RoomRepository implements RoomContract
      */
     public function __construct()
     {
-        $this->room = new Room;
+        $this->User = new User;
     }
 
-    public function add($userId,$data)
+    public function add($data)
     {
-        return $this->room->create($data)->users()->attach((int) $userId);
+        // TODO: Implement add() method.
     }
 
 

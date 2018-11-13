@@ -6,7 +6,6 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Requests\OpenChatMessage;
 use App\Http\Requests\PrivateChatMessage;
-use App\Http\Requests\AddChatRoom;
 use App\Contracts\MessageContract;
 use App\Contracts\RoomContract;
 use App\Contracts\UserContract;
@@ -84,18 +83,6 @@ class ChatController extends Controller
         return Response(200);
     }
 
-    public function addChatRoom(AddChatRoom $request){
 
-        $userId = Auth::id();
-        try{
-            $this->roomRepo->add($userId,$request->all());
-        }
-        catch (\Exception $e){
-            report($e);
-            return Response($e->getMessage(),$e->getCode());
-        }
-
-        return Response(200);
-    }
 
 }

@@ -20,7 +20,7 @@ window.Vue = require('vue');
  */
 
 Vue.use(VeeValidate);
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('private-chat', require('./components/PrivateChat.vue'));
 Vue.component('open-chat', require('./components/OpenChat.vue'));
 Vue.component('private-chat-rooms', require('./components/PrivateChatRooms.vue'));
 

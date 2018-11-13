@@ -22,9 +22,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/openChat', 'ChatController@openChat')->name('openChat');
 Route::post('/addOpenMessage', 'ChatController@addOpenChatMessage')->name('addOpenMessage');
 
-Route::get('/privateChatRooms', 'ChatController@privateChatRooms')->middleware('auth')->name('privateChatRooms');
-Route::get('/privateChat', 'ChatController@privateChat')->middleware('auth')->name('privateChat');
-Route::post('/addPrivateMessage', 'ChatController@addOpenChatMessage')->middleware('auth')->name('addOpenMessage');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/privateChatRooms', 'ChatController@privateChatRooms')->name('privateChatRooms');
+    Route::get('/privateChat', 'ChatController@privateChat')->name('privateChat');
+    Route::post('/addPrivateMessage', 'ChatController@addOpenChatMessage')->name('addOpenMessage');
 
 
-Route::post('/addChatRoom', 'ChatController@addChatRoom')->middleware('auth')->name('addChatRoom');
+    Route::post('/addChatRoom', 'RoomController@addChatRoom')->name('addChatRoom');
+    Route::post('/connectRoom', 'RoomController@ConnectToRoom')->name('ConnectToRoom');
+    Route::get('/getRooms', 'RoomController@getRooms')->name('getRooms');
+});
+

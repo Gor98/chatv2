@@ -2,6 +2,6 @@
 
 @section('content')
 
-           <private-chat-Rooms></private-chat-Rooms>
+           <private-chat-Rooms :userroomids="{{ json_encode(Auth::user()->rooms->pluck('id')) }}" ></private-chat-Rooms>
 
 @endsection

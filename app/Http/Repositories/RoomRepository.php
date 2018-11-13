@@ -41,9 +41,18 @@ class RoomRepository implements RoomContract
         // TODO: Implement getOne() method.
     }
 
+    public function countMembers($rooms)
+    {
+        foreach ($rooms as $room){
+            $room->countMembers = count($room->users);
+        }
+
+        return $rooms;
+    }
+
     public function getAll()
     {
-        // TODO: Implement addAll() method.
+        return $this->room->all();
     }
 
 

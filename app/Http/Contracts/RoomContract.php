@@ -7,4 +7,5 @@ interface RoomContract
     public function getAll();
     public function getOne($id);
     public function countMembers($rooms);
+    public function getMessages($id);
 }

@@ -8,12 +8,16 @@ class Message extends Model
 {
 
     protected $fillable = [
-        'text', 'user_id'
+        'text', 'room_id', 'user_id'
     ];
 
 
     public function room(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(Room::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
 }

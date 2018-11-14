@@ -29,9 +29,9 @@ private $message;
         $this->message = new Message;
     }
 
-    public function add($data)
+    public function add($roomId,$userId,$text)
     {
-        // TODO: Implement add() method.
+        $this->message->create(['room_id' =>$roomId, 'user_id'=>$userId, 'text' => $text]);
     }
 
 

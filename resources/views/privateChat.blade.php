@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-           <private-chat></private-chat>
-        </div>
-    </div>
-</div>
+
+           <private-chat  redirect_rooms="{{route('privateChatRooms')}}" :room_id="{{$room_id}}" :user="{{$user}}"></private-chat>
 @endsection

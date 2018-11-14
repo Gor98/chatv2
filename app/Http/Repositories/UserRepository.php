@@ -18,7 +18,7 @@ class UserRepository implements UserContract
      *
      * @var $model
      */
-    private $Room;
+    private $user;
 
     /**
      * Create a new instance of AdminRepository class.
@@ -27,7 +27,7 @@ class UserRepository implements UserContract
      */
     public function __construct()
     {
-        $this->User = new User;
+        $this->user = new User;
     }
 
     public function add($data)
@@ -38,7 +38,7 @@ class UserRepository implements UserContract
 
     public function getOne($id)
     {
-        // TODO: Implement getOne() method.
+        return $this->user->findOrfail($id);
     }
 
     public function getAll()

@@ -52,8 +52,13 @@ class ChatController extends Controller
         return view('openChat');
     }
 
-    public function privateChat(){
-        return view('privateChat');
+    public function privateChat($id){
+
+        $user = Auth::user();
+
+        return view('privateChat')->with(['room_id'=>$id, 'user'=>$user]);
+
+
     }
 
     public function privateChatRooms(){
@@ -78,7 +83,8 @@ class ChatController extends Controller
 
     public function addPrivateChatMessage(PrivateChatMessage $request){
 
-        dd($request->all());
+        // add message
+        $this->messageRepo->add($request->roomId,$request->userId, $request->text);
 
         return Response(200);
     }

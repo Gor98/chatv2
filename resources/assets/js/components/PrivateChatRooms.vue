@@ -79,15 +79,6 @@
         },
         props:['userroomids'],
         methods:{
-            sendMessage(){
-                // push messages to massages list
-                this.messages.push({text:this.text});
-
-                // send message
-                axios.post('/addPrivateMessage',{text:this.text}).then(response => {
-                });
-                this.text = '';
-            },
 
             createRoom(){
                 this.submitted = true;
@@ -104,11 +95,15 @@
 
             connectToRoom(room){
 
+
+                //////// Bug 'to remember' ////////
+                // when first time created romm and trying to connect error because of room id
+
                 if(!this.userroomids.includes(room.id)){
                     room.countMembers ++;
                 };
                 axios.post('/connectRoom',{id:room.id}).then(response => {
-                    window.location.href = "privateChat";
+                    window.location.href = "privateChat/"+room.id;
                 });
             },
 
@@ -118,11 +113,6 @@
             axios.get('/getRooms').then(response => {
                 this.rooms = response.data;
             });
-            // Echo.join('privateChat')
-            //     .listen('.newPrivateMessage', (e) => {
-            //         // this.messages.push(e);
-            //         console.log(e);
-            //     });
 
         }
     }

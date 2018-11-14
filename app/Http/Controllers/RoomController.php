@@ -53,6 +53,14 @@ class RoomController extends Controller
         return Response($rooms,200);
     }
 
+    public function getMessages($id){
+
+            // get room messages
+            $messages = $this->roomRepo->getMessages($id);
+
+            return Response($messages,200);
+    }
+
     public function ConnectToRoom(Request $request){
 
         try{

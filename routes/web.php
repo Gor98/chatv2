@@ -24,12 +24,13 @@ Route::post('/addOpenMessage', 'ChatController@addOpenChatMessage')->name('addOp
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/privateChatRooms', 'ChatController@privateChatRooms')->name('privateChatRooms');
-    Route::get('/privateChat', 'ChatController@privateChat')->name('privateChat');
-    Route::post('/addPrivateMessage', 'ChatController@addOpenChatMessage')->name('addOpenMessage');
+    Route::get('/privateChat/{id}', 'ChatController@privateChat')->name('privateChat');
+    Route::post('/addPrivateMessage', 'ChatController@addPrivateChatMessage')->name('addPrivateChatMessage');
 
 
     Route::post('/addChatRoom', 'RoomController@addChatRoom')->name('addChatRoom');
     Route::post('/connectRoom', 'RoomController@ConnectToRoom')->name('ConnectToRoom');
     Route::get('/getRooms', 'RoomController@getRooms')->name('getRooms');
+    Route::get('/room/messages/{id}', 'RoomController@getMessages')->name('getMessages');
 });
 

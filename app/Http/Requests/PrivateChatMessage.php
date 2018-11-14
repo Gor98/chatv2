@@ -13,7 +13,7 @@ class PrivateChatMessage extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class PrivateChatMessage extends FormRequest
     public function rules()
     {
         return [
-            //
+            'text' =>'required|string|max:255',
+            'roomId' =>'required|integer',
+            'userId' =>'required|integer',
         ];
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomUserTable extends Migration
+class ChangeMessagesTableAddUserId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,14 @@ class CreateRoomUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_user', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::table('messages', function (Blueprint $table) {
 
             $table->integer('user_id')->unsigned();
+
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->integer('room_id')->unsigned();
-            $table->foreign('room_id')->references('id')->on('rooms')
-                   ->onDelete('cascade')
-                    ->onUpdate('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -37,6 +31,11 @@ class CreateRoomUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_user');
+        Schema::table('messages', function (Blueprint $table) {
+
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+
+        });
     }
 }

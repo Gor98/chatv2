@@ -38,7 +38,12 @@ class RoomRepository implements RoomContract
 
     public function getOne($id)
     {
-        // TODO: Implement getOne() method.
+        return $this->room->findOrfail($id);
+    }
+
+    public function getMessages($id)
+    {
+       return $this->getOne($id)->messages()->with('user')->get();
     }
 
     public function countMembers($rooms)

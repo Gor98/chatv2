@@ -66299,13 +66299,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('/room/messages/' + this.room_id).then(function (response) {
             _this.messages = response.data;
+            console.log(response.data);
+            console.log('-----');
         });
 
-        // Echo.join('privateChat')
-        //     .listen('.newPrivateMessage', (e) => {
-        //         // this.messages.push(e);
-        //         console.log(e);
-        //     });
+        Echo.private('private-chat').listen('.privateMessage', function (e) {
+            console.log(e);
+            _this.messages.push({ text: e.text, user_id: e.user_id, user_name: e.user_name, user: _this.user, room_id: _this.room_id });
+            console.log(_this.messages);;
+        });
     }
 });
 
@@ -66328,7 +66330,7 @@ var render = function() {
               "ul",
               { staticClass: "list-group" },
               _vm._l(_vm.messages, function(index) {
-                return index.user.id == _vm.user.id
+                return index.user_id == _vm.user.id
                   ? _c("li", { staticClass: "list-group-item col-6" }, [
                       _vm._v(_vm._s(index.text) + " "),
                       _c("small", [
@@ -66347,7 +66349,7 @@ var render = function() {
                       [
                         _vm._v(_vm._s(index.text) + " "),
                         _c("small", [
-                          _c("b", [_vm._v(_vm._s(index.user.name) + " ")])
+                          _c("b", [_vm._v(_vm._s(index.user_name) + " ")])
                         ])
                       ]
                     )

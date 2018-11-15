@@ -6,8 +6,8 @@
                     <div class="card-header">Open Chat</div>
                     <div class="card-body">
                         <ul class="list-group" >
-                            <li  v-for="index in messages" v-if="index.user.id == user.id"   class="list-group-item col-6"  >{{index.text}} <small><b>{{index.user.name}} </b></small></li>
-                            <li v-else  class="list-group-item col-6  offset-md-6"  style="background-color: #ccc;  text-align: end;">{{index.text}} <small><b>{{index.user.name}} </b></small></li>
+                            <li  v-for="index in messages" v-if="index.user_id == user.id"   class="list-group-item col-6"  >{{index.text}} <small><b>{{index.user.name}} </b></small></li>
+                            <li v-else  class="list-group-item col-6  offset-md-6"  style="background-color: #ccc;  text-align: end;">{{index.text}} <small><b>{{index.user_name}} </b></small></li>
                         </ul>
 
                     </div>
@@ -70,14 +70,20 @@
         mounted() {
             axios.get('/room/messages/'+this.room_id).then(response => {
                 this.messages = response.data
+                console.log(response.data);
+                console.log('-----');
             });
 
 
-            // Echo.join('privateChat')
-            //     .listen('.newPrivateMessage', (e) => {
-            //         // this.messages.push(e);
-            //         console.log(e);
-            //     });
+            Echo.private('private-chat')
+                .listen('.privateMessage', (e) => {
+                    console.log(e);
+                    this.messages.push(
+                        {text:e.text, user_id:e.user_id,user_name:e.user_name, user:this.user,room_id:this.room_id }
+                        );
+                    console.log(this.messages);;
+                });
+
 
         }
     }

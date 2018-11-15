@@ -10,6 +10,7 @@ use App\Contracts\MessageContract;
 use App\Contracts\RoomContract;
 use App\Contracts\UserContract;
 use App\Events\OpenChat;
+use App\Events\SendPrivateChatMessage;
 use Auth;
 
 class ChatController extends Controller
@@ -85,6 +86,7 @@ class ChatController extends Controller
 
         // add message
         $this->messageRepo->add($request->roomId,$request->userId, $request->text);
+        event(new SendPrivateChatMessage( $request->get('text'),Auth::id()));
 
         return Response(200);
     }

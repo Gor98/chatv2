@@ -16,7 +16,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 
-Broadcast::channel('Chat', function ($user, $message) {
+Broadcast::channel('private-chat', function (   ) {
     return true;
 });
 
